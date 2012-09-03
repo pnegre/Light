@@ -8,14 +8,14 @@
     <Button
         android:id="@+id/butstart"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="90dip"
         android:text="Start light"
         />
 
     <Button
         android:id="@+id/butend"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="90dip"
         android:text="Shut down light"
         />
 
