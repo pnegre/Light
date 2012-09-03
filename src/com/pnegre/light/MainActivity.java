@@ -10,6 +10,17 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+
+
+
+// TODO: Assegurar-nos que emprem càmera de darrera i que suporta flash
+// TODO: Investigar GLSurface enlloc de SurfaceView per preview càmera
+// TODO: Millorar presentació general...
+
+
+
+
+
 public class MainActivity extends Activity
 {
 
