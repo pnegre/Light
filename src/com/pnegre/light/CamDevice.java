@@ -26,7 +26,7 @@ class CamDevice implements SurfaceHolder.Callback {
 
     void ledOn() {
         try {
-            if ((flashing) || (camera != null)) {
+            if (camera != null) {
                 return;
             }
             camera = Camera.open();
@@ -36,11 +36,19 @@ class CamDevice implements SurfaceHolder.Callback {
             camera.setParameters(params);
             camera.startPreview();
             flashing = true;
-        } catch (IOException e) { };
+        } catch (IOException e) {
+
+            if (camera != null) {
+                camera.stopPreview();
+                camera.release();
+            }
+            camera = null;
+
+        };
     }
 
     void ledOff() {
-        if ((!flashing) || (camera == null)) {
+        if (camera == null) {
             return;
         }
         flashing = false;

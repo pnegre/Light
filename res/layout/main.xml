@@ -8,15 +8,8 @@
     <Button
         android:id="@+id/butstart"
         android:layout_width="fill_parent"
-        android:layout_height="90dip"
-        android:text="Start light"
-        />
-
-    <Button
-        android:id="@+id/butend"
-        android:layout_width="fill_parent"
-        android:layout_height="90dip"
-        android:text="Shut down light"
+        android:layout_height="170dip"
+        android:text="Start/Stop light"
         />
 
     <SurfaceView

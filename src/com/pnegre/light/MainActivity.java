@@ -15,6 +15,7 @@ public class MainActivity extends Activity
 
     private CamDevice camDevice;
     SurfaceView sview;
+    boolean isOn = false;
 
 
     /** Called when the activity is first created. */
@@ -28,24 +29,21 @@ public class MainActivity extends Activity
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                camDevice.ledOn();
+                if (!isOn)
+                    camDevice.ledOn();
+                else
+                    camDevice.ledOff();
+
+                isOn = !isOn;
             }
         });
-
-        Button but2 = (Button) findViewById(R.id.butend);
-        but2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                camDevice.ledOff();
-            }
-        });
-
 
     }
 
     public void onResume() {
         sview = (SurfaceView) findViewById(R.id.surfaceview);
         camDevice = new CamDevice(sview);
+        isOn = false;
         super.onResume();
     }
 
