@@ -40,15 +40,17 @@ public class MainActivity extends Activity
             }
         });
 
-        sview = (SurfaceView) findViewById(R.id.surfaceview);
-        camDevice = new CamDevice(sview);
+
     }
 
     public void onResume() {
+        sview = (SurfaceView) findViewById(R.id.surfaceview);
+        camDevice = new CamDevice(sview);
         super.onResume();
     }
 
     public void onPause() {
+        camDevice.ledOff();
         super.onPause();
     }
 
