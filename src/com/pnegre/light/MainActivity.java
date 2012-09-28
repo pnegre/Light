@@ -1,14 +1,10 @@
 package com.pnegre.light;
 
 import android.app.Activity;
-import android.hardware.Camera;
 import android.os.Bundle;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-
-import java.io.IOException;
 
 
 

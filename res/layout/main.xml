@@ -14,8 +14,8 @@
 
     <SurfaceView
         android:id="@+id/surfaceview"
-        android:layout_width="2px"
-        android:layout_height="2px"
+        android:layout_width="1px"
+        android:layout_height="1px"
         android:gravity="left"
         />
 

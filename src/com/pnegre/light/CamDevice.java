@@ -21,7 +21,7 @@ class CamDevice implements SurfaceHolder.Callback {
     CamDevice(SurfaceView sv) {
         surfaceHolder = sv.getHolder();
         surfaceHolder.addCallback(this);
-        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+//        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
     void ledOn() {
@@ -29,7 +29,7 @@ class CamDevice implements SurfaceHolder.Callback {
             if (camera != null) {
                 return;
             }
-            camera = Camera.open();
+            camera = Camera.open(getCameraid());
             camera.setPreviewDisplay(surfaceHolder);
             Camera.Parameters params = camera.getParameters();
             params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
@@ -59,6 +59,17 @@ class CamDevice implements SurfaceHolder.Callback {
         camera.stopPreview();
         camera.release();
         camera = null;
+    }
+
+    int getCameraid() {
+        Camera.CameraInfo cinfo = new Camera.CameraInfo();
+        int ccount = Camera.getNumberOfCameras();
+        for (int i=0; i<ccount; i++) {
+            Camera.getCameraInfo(i, cinfo);
+            if (cinfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK)
+                return i;
+        }
+        throw new RuntimeException("Back camera not present");
     }
 
     @Override
