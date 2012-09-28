@@ -1,28 +1,23 @@
 package com.pnegre.light;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-
-
-
-
-// TODO: Assegurar-nos que emprem càmera de darrera i que suporta flash
-// TODO: Investigar GLSurface enlloc de SurfaceView per preview càmera
-// TODO: Millorar presentació general...
-
-
-
 
 
 public class MainActivity extends Activity
 {
 
     private CamDevice camDevice;
-    SurfaceView sview;
-    boolean isOn = false;
+    private SurfaceView sview;
+    private boolean isOn = false;
+
+    private PowerManager pmanager;
+    private PowerManager.WakeLock wakeLock;
 
 
     /** Called when the activity is first created. */
@@ -31,6 +26,8 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        pmanager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock =  pmanager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "Light");
 
         Button but1 = (Button) findViewById(R.id.butstart);
         but1.setOnClickListener(new View.OnClickListener() {
@@ -52,10 +49,12 @@ public class MainActivity extends Activity
         camDevice = new CamDevice(sview);
         isOn = false;
         super.onResume();
+        wakeLock.acquire();
     }
 
     public void onPause() {
         camDevice.ledOff();
+        wakeLock.release();
         super.onPause();
     }
 }

@@ -16,12 +16,11 @@ class CamDevice implements SurfaceHolder.Callback {
 
     private SurfaceHolder surfaceHolder;
     private Camera camera;
-    boolean flashing = false;
+    private boolean flashing = false;
 
     CamDevice(SurfaceView sv) {
         surfaceHolder = sv.getHolder();
         surfaceHolder.addCallback(this);
-//        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
     void ledOn() {
@@ -44,7 +43,7 @@ class CamDevice implements SurfaceHolder.Callback {
             }
             camera = null;
 
-        };
+        }
     }
 
     void ledOff() {
@@ -61,7 +60,7 @@ class CamDevice implements SurfaceHolder.Callback {
         camera = null;
     }
 
-    int getCameraid() {
+    private int getCameraid() {
         Camera.CameraInfo cinfo = new Camera.CameraInfo();
         int ccount = Camera.getNumberOfCameras();
         for (int i=0; i<ccount; i++) {
