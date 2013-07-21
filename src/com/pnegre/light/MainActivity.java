@@ -31,8 +31,8 @@ public class MainActivity extends Activity
         wakeLock =  pmanager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "Light");
 
         imageView = (ImageView) findViewById(R.id.theimage);
-        Button but1 = (Button) findViewById(R.id.butstart);
-        but1.setOnClickListener(new View.OnClickListener() {
+
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!isOn)

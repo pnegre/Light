@@ -5,13 +5,6 @@
               android:layout_height="fill_parent"
         >
 
-    <Button
-            android:id="@+id/butstart"
-            android:layout_width="fill_parent"
-            android:layout_height="170dip"
-            android:text="Start/Stop light"
-            />
-
     <SurfaceView
             android:id="@+id/surfaceview"
             android:layout_width="1px"
