@@ -22,25 +22,30 @@ class CamDevice implements SurfaceHolder.Callback {
         surfaceHolder.addCallback(this);
     }
 
-    void ledOn() {
+    void init() {
         try {
-            if (camera != null) {
-                return;
-            }
             camera = Camera.open(getCameraid());
             camera.setPreviewDisplay(surfaceHolder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void shutoff() {
+        if (camera == null) {
+            return;
+        }
+        ledOff();
+        camera.release();
+        camera = null;
+    }
+
+    void ledOn() {
+        if (camera != null) {
             Camera.Parameters params = camera.getParameters();
             params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(params);
-            camera.startPreview();
-        } catch (IOException e) {
-
-            if (camera != null) {
-                camera.stopPreview();
-                camera.release();
-            }
-            camera = null;
-
+            //camera.startPreview();
         }
     }
 
@@ -51,16 +56,13 @@ class CamDevice implements SurfaceHolder.Callback {
         Camera.Parameters params = camera.getParameters();
         params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
         camera.setParameters(params);
-
-        camera.stopPreview();
-        camera.release();
-        camera = null;
+        //camera.stopPreview();
     }
 
     private int getCameraid() {
         Camera.CameraInfo cinfo = new Camera.CameraInfo();
         int ccount = Camera.getNumberOfCameras();
-        for (int i=0; i<ccount; i++) {
+        for (int i = 0; i < ccount; i++) {
             Camera.getCameraInfo(i, cinfo);
             if (cinfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK)
                 return i;

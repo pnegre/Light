@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
 
     <Button
-        android:id="@+id/butstart"
-        android:layout_width="fill_parent"
-        android:layout_height="170dip"
-        android:text="Start/Stop light"
-        />
+            android:id="@+id/butstart"
+            android:layout_width="fill_parent"
+            android:layout_height="170dip"
+            android:text="Start/Stop light"
+            />
 
     <SurfaceView
-        android:id="@+id/surfaceview"
-        android:layout_width="1px"
-        android:layout_height="1px"
-        android:gravity="left"
-        />
+            android:id="@+id/surfaceview"
+            android:layout_width="1px"
+            android:layout_height="1px"
+            android:gravity="left"
+            />
+
+    <ImageView
+            android:id="@+id/theimage"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@drawable/lb_off"
+            />
 
 </LinearLayout>
 
