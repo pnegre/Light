@@ -16,7 +16,6 @@ class CamDevice implements SurfaceHolder.Callback {
 
     private SurfaceHolder surfaceHolder;
     private Camera camera;
-    private boolean flashing = false;
 
     CamDevice(SurfaceView sv) {
         surfaceHolder = sv.getHolder();
@@ -34,7 +33,6 @@ class CamDevice implements SurfaceHolder.Callback {
             params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(params);
             camera.startPreview();
-            flashing = true;
         } catch (IOException e) {
 
             if (camera != null) {
@@ -50,7 +48,6 @@ class CamDevice implements SurfaceHolder.Callback {
         if (camera == null) {
             return;
         }
-        flashing = false;
         Camera.Parameters params = camera.getParameters();
         params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
         camera.setParameters(params);
