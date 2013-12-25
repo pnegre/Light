@@ -7,8 +7,8 @@
 
     <SurfaceView
             android:id="@+id/surfaceview"
-            android:layout_width="1px"
-            android:layout_height="1px"
+            android:layout_width="500px"
+            android:layout_height="500px"
             android:gravity="left"
             />
 

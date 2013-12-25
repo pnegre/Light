@@ -20,15 +20,11 @@ class CamDevice implements SurfaceHolder.Callback {
     CamDevice(SurfaceView sv) {
         surfaceHolder = sv.getHolder();
         surfaceHolder.addCallback(this);
+        init();
     }
 
     void init() {
-        try {
-            camera = Camera.open(getCameraid());
-            camera.setPreviewDisplay(surfaceHolder);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     void shutoff() {
@@ -45,7 +41,7 @@ class CamDevice implements SurfaceHolder.Callback {
             Camera.Parameters params = camera.getParameters();
             params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(params);
-            //camera.startPreview();
+            camera.startPreview();
         }
     }
 
@@ -56,7 +52,7 @@ class CamDevice implements SurfaceHolder.Callback {
         Camera.Parameters params = camera.getParameters();
         params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
         camera.setParameters(params);
-        //camera.stopPreview();
+        camera.stopPreview();
     }
 
     private int getCameraid() {
@@ -72,6 +68,14 @@ class CamDevice implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        try {
+            if (camera == null) {
+                camera = Camera.open(getCameraid());
+            }
+            camera.setPreviewDisplay(surfaceHolder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -81,6 +85,9 @@ class CamDevice implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        if (camera != null) {
+            shutoff();
+        }
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }
