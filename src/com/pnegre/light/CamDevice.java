@@ -14,18 +14,12 @@ import java.io.IOException;
 
 class CamDevice implements SurfaceHolder.Callback {
 
-    private SurfaceHolder surfaceHolder;
     private Camera camera;
 
     CamDevice(SurfaceView sv) {
-        surfaceHolder = sv.getHolder();
-        surfaceHolder.addCallback(this);
-        init();
+        sv.getHolder().addCallback(this);
     }
 
-    void init() {
-
-    }
 
     void shutoff() {
         if (camera == null) {

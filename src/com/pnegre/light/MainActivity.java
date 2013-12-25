@@ -59,7 +59,6 @@ public class MainActivity extends Activity
         super.onResume();
         sview = (SurfaceView) findViewById(R.id.surfaceview);
         camDevice = new CamDevice(sview);
-        camDevice.init();
         isOn = false;
         wakeLock.acquire();
     }
